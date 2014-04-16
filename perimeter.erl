@@ -4,7 +4,7 @@
 perimeter({square, X}) ->
 	X * 2;
 perimeter({circle, R}) ->
-	2 * math:pi() * R;
+	math:pi() * math:pow(R, 2);
 perimeter({triangle, A, B, C}) ->
 	A + B + C;
 perimeter(_) ->
