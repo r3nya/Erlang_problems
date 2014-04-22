@@ -11,3 +11,12 @@ calculate(X) ->
 
 llen(List) ->
   lists:map(fun(X) when is_list(X) == true -> length(X) end, List).
+
+min(L) ->
+    lists:foldl(fun(X, Min) ->
+                    case Min < X of
+                        true    -> Min;
+                        false   -> X
+                    end
+                end,
+                hd(L), L).
