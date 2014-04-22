@@ -20,3 +20,29 @@ min(L) ->
                     end
                 end,
                 hd(L), L).
+
+% 7.C
+
+all(Pred, [])   ->
+        true;
+all(Pred, [H|T] ->
+        case Pred(H) of
+                true    ->      all(Pred, T);
+                false   ->      false
+        end.
+
+all_even(List)  ->
+        all(fun(X)      ->      X rem 2 == 0 end, List).
+
+first(Pred, []) ->
+        false;
+first(Pred, [Head|Tail])        ->
+        case Pred(Head) of
+                true    ->      Head;
+                false   ->      first(Pred, Tail)
+        end.
+
+% 7.D
+
+mk_adder(Const) ->
+        fun(X)  ->      X + Const end.
