@@ -30,7 +30,7 @@ db_loop(Storage) ->
       db_loop(Storage);
 
     {remove, Name}  ->
-      db_loop(lists:filter(fun(X) -> X =/= Name end, Storage));
+      db_loop(lists:keydelete(Name, 1, Storage);
     
     {all_names} ->
       io:format("~p~n",[lists:map(fun({X, _}) -> X end, Storage)]),
