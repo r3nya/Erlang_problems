@@ -1,7 +1,11 @@
 -module('db_distr').
 -compile(export_all).
 -include("db_record.hrl").
--define(SERVER, 'localhost').
+-define(SERVER, 'test@macb00k').
+
+% erl -sname ololo
+% node().
+% define(SERVER, 'ololo@hostname')
 
 start() ->
   Table = ets:new(table, [public, {keypos, #person.name}]),
@@ -99,5 +103,14 @@ loop_client() ->
 
 		ok ->
 			io:format("ok~n", []),
-			loop_client();
+			loop_client()
 	end. 
+  
+loop_monitor() ->
+	monitor(process, {server, ?SERVER}),
+
+	receive 
+		{'DOWN', _, _, _, _} ->
+			io:format("Connection to DATABASE is missed or not created!~n", []),
+			stop_client()
+	end.
